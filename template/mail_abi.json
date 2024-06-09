@@ -1,0 +1,119 @@
+{
+  "schema_version": "0.4.0",
+  "metadata": {
+    "name": "mail",
+    "version": "0.1.0",
+    "build": {
+      "compiler": "rustc 1.78.0",
+      "builder": "cargo-near 0.6.2"
+    },
+    "wasm_hash": "HLTa6eVf5pcxYvcGMaDKg5HsRCqS96AXhtfJMWu7fAWR"
+  },
+  "body": {
+    "functions": [
+      {
+        "name": "contract_source_metadata",
+        "kind": "view"
+      },
+      {
+        "name": "destroyedself",
+        "kind": "view",
+        "result": {
+          "serialization_type": "json",
+          "type_schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      {
+        "name": "get_all_messages",
+        "kind": "view",
+        "result": {
+          "serialization_type": "json",
+          "type_schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_user_messages",
+        "kind": "view",
+        "params": {
+          "serialization_type": "json",
+          "args": [
+            {
+              "name": "user",
+              "type_schema": {
+                "$ref": "#/definitions/AccountId"
+              }
+            }
+          ]
+        },
+        "result": {
+          "serialization_type": "json",
+          "type_schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        }
+      },
+      {
+        "name": "send_message",
+        "kind": "call",
+        "params": {
+          "serialization_type": "json",
+          "args": [
+            {
+              "name": "target",
+              "type_schema": {
+                "$ref": "#/definitions/AccountId"
+              }
+            },
+            {
+              "name": "content",
+              "type_schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "root_schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "String",
+      "type": "string",
+      "definitions": {
+        "AccountId": {
+          "description": "NEAR Account Identifier.\n\nThis is a unique, syntactically valid, human-readable account identifier on the NEAR network.\n\n[See the crate-level docs for information about validation.](index.html#account-id-rules)\n\nAlso see [Error kind precedence](AccountId#error-kind-precedence).\n\n## Examples\n\n``` use near_account_id::AccountId;\n\nlet alice: AccountId = \"alice.near\".parse().unwrap();\n\nassert!(\"ƒelicia.near\".parse::<AccountId>().is_err()); // (ƒ is not f) ```",
+          "type": "string"
+        },
+        "Message": {
+          "type": "object",
+          "required": [
+            "contents",
+            "receiver",
+            "sender"
+          ],
+          "properties": {
+            "contents": {
+              "type": "string"
+            },
+            "receiver": {
+              "$ref": "#/definitions/AccountId"
+            },
+            "sender": {
+              "$ref": "#/definitions/AccountId"
+            }
+          }
+        }
+      }
+    }
+  }
+}

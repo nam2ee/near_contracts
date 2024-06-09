@@ -1,4 +1,3 @@
-// 필요한 외부 크레이트를 가져옵니다.
 use std::clone;
 use near_sdk::{env, near_bindgen, AccountId, Promise, PanicOnDefault};
 use near_sdk::{log, near};
@@ -26,7 +25,7 @@ impl Default for ChatContract {
             messages: vec![Message {
                 sender: "emptyglove4396.testnet".parse().unwrap(),
                 receiver: "broadgrain3282.testnet".parse().unwrap(),
-                contents: String::from("Fuck"),
+                contents: String::from("Hello near"),
             }],
     }
     }
@@ -62,6 +61,12 @@ impl ChatContract {
         .cloned()
         .filter(|msg| msg.receiver == user)
         .collect()
+    }
+    
+    pub fn destroyedself (self) -> i32
+    {
+        let ChatContract = self;
+        7
     }
 }
 
