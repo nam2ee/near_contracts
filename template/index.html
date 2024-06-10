@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEAR Chat DApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.43.0/dist/near-api-js.min.js"></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <h1>NEAR Chat DApp</h1>
+    <button id="login-button" onclick="login()">Login</button>
+    <button id="logout-button" onclick="logout()" style="display:none;">Logout</button>
+
     <div>
         <h2>Send Message</h2>
-        <input type="text" id="receiver" placeholder="Receiver Account ID" />
-        <input type="text" id="content" placeholder="Message Content" />
-        <button onclick="sendMessage()">Send Message</button>
+        <input type="text" id="receiver" placeholder="Receiver">
+        <input type="text" id="content" placeholder="Message">
+        <button onclick="sendMessage()">Send</button>
     </div>
+
     <div>
         <h2>All Messages</h2>
         <button onclick="getAllMessages()">Get All Messages</button>
         <ul id="messages"></ul>
     </div>
+
     <div>
         <h2>User Messages</h2>
-        <input type="text" id="user" placeholder="User Account ID" />
+        <input type="text" id="user" placeholder="User">
         <button onclick="getUserMessages()">Get User Messages</button>
         <ul id="user-messages"></ul>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.43.0/dist/near-api-js.min.js"></script>
-    <script src="app.js"></script>
+    <div>
+        <h2>Destroyed Self</h2>
+        <button onclick="getDestroyedSelf()">Get Destroyed Self</button>
+        <p id="destroyed-self"></p>
+    </div>
 </body>
 </html>

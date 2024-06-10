@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEAR Chat App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>NEAR Chat App</h1>
+        <div>
+            <label for="account">Account ID:</label>
+            <input type="text" id="account" placeholder="Enter your account ID">
+        </div>
+        <div>
+            <label for="receiver">Receiver:</label>
+            <input type="text" id="receiver" placeholder="Enter receiver's account ID">
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <input type="text" id="message" placeholder="Enter your message">
+        </div>
+        <button id="sendMessageButton">Send Message</button>
+        <button id="getAllMessagesButton">Get All Messages</button>
+        <button id="getUserMessagesButton">Get User Messages</button>
+        <button id="destroySelfButton">Destroy Self</button>
+        <div id="messages"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/near-api-js/dist/near-api-js.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

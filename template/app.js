@@ -8,7 +8,7 @@ const nearConfig = {
     walletUrl: 'https://wallet.testnet.near.org',
     helperUrl: 'https://helper.testnet.near.org',
     explorerUrl: 'https://explorer.testnet.near.org',
-    contractName: 'past-nail.testnet' // 유효한 NEAR 계정 ID로 업데이트
+    contractName: 'uneven-veil.testnet' // 유효한 NEAR 계정 ID로 업데이트
 };
 
 let walletConnection;
@@ -21,7 +21,7 @@ async function initContract() {
 
     const contract = new Contract(account, nearConfig.contractName, {
         viewMethods: ['get_all_messages', 'get_user_messages'],
-        changeMethods: ['send_message'],
+        changeMethods: ['send_message', 'destroyedself'],
     });
 
     return { contract, walletConnection };
@@ -92,12 +92,19 @@ async function getUserMessages() {
     });
 }
 
+async function getDestroyedSelf() {
+    const { contract } = await initContract();
+    const destroyedSelf = await contract.destroyedself();
+    alert(`Destroyed Self Value: ${destroyedSelf}`);
+}
+
 // 전역으로 함수 노출
 window.login = login;
 window.logout = logout;
 window.sendMessage = sendMessage;
 window.getAllMessages = getAllMessages;
 window.getUserMessages = getUserMessages;
+window.getDestroyedSelf = getDestroyedSelf;
 
 // 로그인 상태에 따라 버튼 표시
 document.addEventListener('DOMContentLoaded', async () => {

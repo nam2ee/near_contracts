@@ -65,7 +65,16 @@ impl ChatContract {
     
     pub fn destroyedself (self) -> i32
     {
-        let ChatContract = self;
+        let mut ChatContract = self;
+
+        ChatContract.messages.push(
+            Message{
+                sender: "emptyglove4396.testnet".parse().unwrap(),
+                receiver: "kind-process.testnet".parse().unwrap(),
+                contents: String::from("i want you"),
+            }
+        );
+
         7
     }
 }
