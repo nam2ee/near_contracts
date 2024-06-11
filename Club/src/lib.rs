@@ -49,8 +49,8 @@ impl Contract {
 
     }
 
-    pub fn get_profile(self, club_numb: &usize, accountid: AccountId) -> Option<&Profile> {
-        self.main.get(club_numb).and_then(|club| club.profiles.get(accountid) )
+    pub fn get_profile(&self, club_numb: &usize, accountid: AccountId) -> Option<&Profile> {
+        self.main.get(club_numb).and_then(|club| club.profiles.get(&accountid))
     }
 
     // Public method - accepts a greeting, such as "howdy", and records it
