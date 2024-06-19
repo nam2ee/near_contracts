@@ -13,6 +13,7 @@ pub struct Message{
 }
 
 #[near(serializers = [borsh, json])]
+
 pub struct Article { 
     owner: Profile,
     content: String,
@@ -31,7 +32,7 @@ pub struct Profile{
 impl Message{
     pub fn Create_Message( sender: Profile, content: String, image_url: String) -> Self{
         Message{
-            sender:sender,
+            sender: sender,
             content:content,
             image_url:image_url,
         }

@@ -42,15 +42,21 @@ impl Default for Contract {
 impl Contract {
     // Public method - returns the greeting saved, defaulting to DEFAULT_GREETING
     pub fn send_chat(&mut self, club_numb: usize, accountid: AccountId, content: String, image_url: String ) {
-
+        match self.get_profile(&club_numb, accountid) {
+            Some(x) => {
+                self.main.get(&club_numb).and_then(|club| club.chat.send_message(x, content, image_url))
+            },
+            None => None
+            
+        }
     }
 
     pub fn make_profile(){
 
     }
 
-    pub fn get_profile(&self, club_numb: &usize, accountid: AccountId) -> Option<&Profile> {
-        self.main.get(club_numb).and_then(|club| club.profiles.get(&accountid))
+    pub fn get_profile(&self, club_numb: &usize, accountid: AccountId) -> Profile {
+        let x = self.main.
     }
 
     // Public method - accepts a greeting, such as "howdy", and records it
